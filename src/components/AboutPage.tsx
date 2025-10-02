@@ -115,7 +115,7 @@ export function AboutPage() {
                 Watch My Story
               </motion.a>
               <motion.a
-                href="https://wa.me/254700000000"
+                href="https://wa.me/254729044893"
                 className="inline-flex items-center px-8 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-orange-600 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -153,11 +153,12 @@ export function AboutPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="aspect-[4/5] bg-gradient-to-br from-orange-200 to-red-200 rounded-2xl flex items-center justify-center">
-                <div className="text-center text-gray-600">
-                  <div className="text-xl font-medium mb-2">Rakeeri&apos;s Journey</div>
-                  <div className="text-sm">From humble beginnings to wig queen</div>
-                </div>
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/images/rakeeri-story.svg" 
+                  alt="Rakeeri's journey from KSh 500 to Kenya's Wig Queen"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </motion.div>
 
@@ -199,54 +200,103 @@ export function AboutPage() {
         </div>
       </div>
 
-      {/* Milestones Timeline */}
-      <div className="bg-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Clean Journey Infographic */}
+      <div className="relative py-20 bg-gradient-to-br from-gray-50 to-orange-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6">
               Our Journey
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From humble beginnings to Kenya&apos;s #1 wig brand
+              From a KSh 500 side hustle to Kenya&apos;s most trusted wig brand. 
+              Here&apos;s how we built an empire of confidence, one wig at a time.
             </p>
           </motion.div>
 
+          {/* Infographic Timeline */}
           <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-orange-200"></div>
+            {/* Central Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-orange-300 via-orange-500 to-red-500 rounded-full"></div>
             
-            <div className="space-y-12">
+            {/* Timeline Items */}
+            <div className="space-y-16">
               {milestones.map((milestone, index) => (
                 <motion.div
                   key={milestone.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
                   viewport={{ once: true }}
                   className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
                 >
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <div className="bg-white rounded-2xl p-6 shadow-lg">
-                      <div className="text-orange-600 font-bold text-lg mb-2">{milestone.year}</div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{milestone.title}</h3>
-                      <p className="text-gray-700 mb-3">{milestone.description}</p>
-                      <div className="text-orange-600 font-medium">{milestone.achievement}</div>
+                  {/* Content Card */}
+                  <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+                    <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                      {/* Year Badge */}
+                      <div className="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-700 font-bold text-sm rounded-full mb-4">
+                        {milestone.year}
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                        {milestone.title}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-gray-600 mb-6 leading-relaxed">
+                        {milestone.description}
+                      </p>
+                      
+                      {/* Achievement */}
+                      <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-full">
+                        {milestone.achievement}
+                      </div>
                     </div>
                   </div>
                   
-                  {/* Timeline dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-orange-600 rounded-full border-4 border-white shadow-lg"></div>
+                  {/* Timeline Dot */}
+                  <div className="relative z-10 flex-shrink-0 w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-full border-4 border-white shadow-lg"></div>
                   
-                  <div className="w-1/2"></div>
+                  {/* Visual Card */}
+                  <div className={`w-5/12 ${index % 2 === 0 ? 'pl-8' : 'pr-8'}`}>
+                    <div className="bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl p-8 text-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                      {/* Icon/Visual Element */}
+                      <div className="text-center">
+                        <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <span className="text-2xl font-bold">
+                            {index === 0 ? '₵' : index === 1 ? '👥' : index === 2 ? '🎓' : index === 3 ? '📺' : index === 4 ? '🤝' : '👑'}
+                          </span>
+                        </div>
+                        <h4 className="text-xl font-bold mb-2">{milestone.title}</h4>
+                        <p className="text-orange-100 text-sm">{milestone.achievement}</p>
+                      </div>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
+            
+            {/* Completion Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mt-16"
+            >
+              <div className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold text-xl rounded-full shadow-lg">
+                <span className="mr-3 text-2xl">👑</span>
+                Kenya&apos;s #1 Wig Expert
+                <span className="ml-3 text-2xl">👑</span>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -335,39 +385,76 @@ export function AboutPage() {
         </div>
       </div>
 
-      {/* Stats Section */}
-      <div className="bg-gradient-to-r from-orange-600 to-red-600 py-20">
+      {/* Community Impact Section */}
+      <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center text-white"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-16">
-              Our Impact in Numbers
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+              Our Community Impact
             </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div>
-                <div className="text-4xl md:text-5xl font-bold mb-2">269K+</div>
-                <div className="text-lg opacity-90">Facebook Followers</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-bold mb-2">50K+</div>
-                <div className="text-lg opacity-90">Happy Customers</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-bold mb-2">500+</div>
-                <div className="text-lg opacity-90">Training Graduates</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-bold mb-2">100+</div>
-                <div className="text-lg opacity-90">Wholesale Partners</div>
-              </div>
-            </div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Building a network of confident women across Kenya and East Africa
+            </p>
           </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/images/community-impact.svg" 
+                  alt="Rakeeri's community impact across Kenya"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Transforming Lives, One Wig at a Time</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  What started as a personal journey to overcome hair loss has become a movement that empowers 
+                  thousands of women across Kenya and East Africa. Every wig we sell represents a woman who 
+                  can now face the world with confidence.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orange-600 mb-2">269K+</div>
+                  <div className="text-sm text-gray-600">Facebook Followers</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orange-600 mb-2">50K+</div>
+                  <div className="text-sm text-gray-600">Happy Customers</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orange-600 mb-2">500+</div>
+                  <div className="text-sm text-gray-600">Training Graduates</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orange-600 mb-2">100+</div>
+                  <div className="text-sm text-gray-600">Wholesale Partners</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
@@ -405,7 +492,7 @@ export function AboutPage() {
                 Start Training
               </motion.a>
               <motion.a
-                href="https://wa.me/254700000000"
+                href="https://wa.me/254729044893"
                 className="inline-flex items-center px-8 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

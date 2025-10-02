@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ShoppingBag, User, Phone, ChevronDown, Star, Truck, Shield } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -35,56 +34,52 @@ export function Navigation() {
   ]
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav className="bg-white shadow-md border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-            <div className="flex-shrink-0">
-              <Link href="/" className="flex items-center">
-                <Image 
-                  src="/images/logo.svg" 
-                  alt="Rakeeri Wigs" 
-                  width={120}
-                  height={40}
-                  className="h-8 lg:h-10 w-auto"
-                />
-              </Link>
-            </div>
+          <div className="flex-shrink-0">
+            <Link href="/" className="flex items-center">
+              <div className="text-2xl font-display font-bold text-orange-600 tracking-tight">
+                Rakeeri Wigs
+              </div>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <div className="ml-10 flex items-baseline space-x-6 xl:space-x-8">
+            <div className="ml-10 flex items-center space-x-2">
               {navItems.map((item) => (
                 <div key={item.name} className="relative group">
-                  <a
+                  <Link
                     href={item.href}
-                    className="text-gray-700 hover:text-orange-600 px-3 py-2 text-sm font-medium transition-all duration-200 relative group"
+                    className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-all duration-200 relative group"
                   >
-                    {item.name}
+                    <span className="whitespace-nowrap">{item.name}</span>
                     {item.hasDropdown && (
-                      <ChevronDown className="inline-block w-3 h-3 ml-1 group-hover:rotate-180 transition-transform duration-200" />
+                      <ChevronDown className="ml-1 w-3 h-3 group-hover:rotate-180 transition-transform duration-200" />
                     )}
-                  </a>
+                  </Link>
                   
                   {/* Dropdown for Shop */}
                   {item.name === 'Shop by Category' && (
                     <motion.div 
                       initial={{ opacity: 0, y: -10 }}
                       whileHover={{ opacity: 1, y: 0 }}
-                      className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50"
+                      className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50"
                     >
                       <div className="py-2">
                         <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-100">
                           Popular Categories
                         </div>
                         {shopItems.map((subItem) => (
-                          <a
+                          <Link
                             key={subItem.name}
                             href={subItem.href}
                             className="block px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200"
                           >
                             {subItem.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </motion.div>
@@ -95,17 +90,17 @@ export function Navigation() {
                     <motion.div 
                       initial={{ opacity: 0, y: -10 }}
                       whileHover={{ opacity: 1, y: 0 }}
-                      className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50"
+                      className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50"
                     >
                       <div className="py-2">
                         {serviceItems.map((subItem) => (
-                          <a
+                          <Link
                             key={subItem.name}
                             href={subItem.href}
                             className="block px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200"
                           >
                             {subItem.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </motion.div>
@@ -119,7 +114,7 @@ export function Navigation() {
           <div className="hidden lg:flex items-center space-x-3">
             <a
               href="https://wa.me/254729044893"
-              className="flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-full hover:bg-green-700 transition-all duration-200 shadow-md hover:shadow-lg"
+              className="flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-full hover:bg-green-700 transition-all duration-200 shadow-sm hover:shadow-md"
             >
               <Phone className="w-4 h-4 mr-2" />
               WhatsApp
@@ -137,7 +132,7 @@ export function Navigation() {
           <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-gray-700 hover:text-orange-600 transition-colors duration-200"
+              className="p-2 text-gray-700 hover:text-orange-600 transition-colors duration-200 rounded-md hover:bg-orange-50"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -177,24 +172,24 @@ export function Navigation() {
 
               {navItems.map((item) => (
                 <div key={item.name}>
-                  <a
+                  <Link
                     href={item.href}
                     className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors duration-200"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                   
                   {/* Mobile dropdown for Shop */}
                   {item.name === 'Shop by Category' && (
                     <div className="ml-4 space-y-1">
                       {shopItems.map((subItem) => (
-                        <a
+                        <Link
                           key={subItem.name}
                           href={subItem.href}
                           className="block px-4 py-2 text-sm text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors duration-200"
                         >
                           {subItem.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
@@ -203,13 +198,13 @@ export function Navigation() {
                   {item.name === 'Services' && (
                     <div className="ml-4 space-y-1">
                       {serviceItems.map((subItem) => (
-                        <a
+                        <Link
                           key={subItem.name}
                           href={subItem.href}
                           className="block px-4 py-2 text-sm text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors duration-200"
                         >
                           {subItem.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}

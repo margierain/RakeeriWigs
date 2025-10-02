@@ -6,10 +6,15 @@ import { Play, Star, Users, Truck, Shield, Phone } from 'lucide-react'
 
 export function HeroSection() {
   const [viewers, setViewers] = useState(17)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
     const interval = setInterval(() => {
-      setViewers(prev => prev + Math.floor(Math.random() * 3) - 1)
+      setViewers(prev => {
+        const change = Math.floor(Math.random() * 3) - 1
+        return Math.max(15, Math.min(25, prev + change))
+      })
     }, 3000)
     return () => clearInterval(interval)
   }, [])
@@ -42,7 +47,7 @@ export function HeroSection() {
     >
       {/* Urgency Bar */}
       <div className="bg-red-600 text-white text-center py-2 text-sm font-medium">
-        🔥 {viewers} people viewing this page right now
+        🔥 {isClient ? viewers : 17} people viewing this page right now
       </div>
 
       {/* Trust Badges */}
